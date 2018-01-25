@@ -35,20 +35,19 @@ class Car:
         if self._enginestate == self.ON:
             if self._fuellevel > 0:
                 self._fuellevel -= 0.0001
-                print("Fuel level: {} gal".format(self._fuellevel), end="\r")
+                print("\r Fuel level: {} gal".format(self._fuellevel), end="")
             else:
                 self.stopEngine()
 
     def runUntilEmpty(self, rpm):  # Run engine until tank is gone at rpm
         rps = rpm // 60
         while self._fuellevel > 0:
-            for revolution in range(0, rps):
-                self._engineTick()
-
-            time.sleep(1)
+            self._engineTick()
+            time.sleep(1/rps)
 
 if __name__ == "__main__":
     car = Car()
     car.fillTank(13)
     car.startEngine()
+    print("Engine Started")
     car.runUntilEmpty(1500000)

@@ -1,4 +1,4 @@
-from car import *
+from car import Car
 
 
 def test_startup():
